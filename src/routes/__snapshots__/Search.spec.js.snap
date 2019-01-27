@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search should render correctly 1`] = `<div />`;
+exports[`Search should render correctly 1`] = `
+<withRouter(Search)
+  classes={
+    Object {
+      "form": "withRouter-Search--form-2",
+      "root": "withRouter-Search--root-1 testing",
+      "searchField": "withRouter-Search--searchField-3",
+    }
+  }
+/>
+`;

@@ -4,7 +4,9 @@ import { shallow } from 'enzyme';
 import Search from './Search';
 let component;
 
-const props = {};
+const props = {
+	classes: { root: 'testing' },
+};
 
 describe('Search', () => {
 	beforeAll(() => {
