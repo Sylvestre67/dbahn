@@ -4,6 +4,7 @@ exports[`Footer should render correctly 1`] = `
 <footer>
   <WithStyles(Toolbar)
     elevation={0}
+    variant="dense"
   >
     <WithStyles(Typography)
       color="inherit"

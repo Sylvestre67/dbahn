@@ -23,7 +23,7 @@ export function Footer(props) {
 
 	return (
 		<footer className={classes.footer}>
-			<Toolbar elevation={0}>
+			<Toolbar elevation={0} variant="dense">
 				<Typography variant="caption" color="inherit">
 					Made with love in NYC
 				</Typography>

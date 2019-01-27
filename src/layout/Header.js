@@ -27,7 +27,7 @@ export function Header(props) {
 
 	return (
 		<AppBar position="relative" elevation={0}>
-			<Toolbar className={classes.bar}>
+			<Toolbar className={classes.bar} variant="dense">
 				<Grid container>
 					<Grid item xs={12}>
 						<Typography

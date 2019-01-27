@@ -5,7 +5,9 @@ exports[`Header should render correctly 1`] = `
   elevation={0}
   position="relative"
 >
-  <WithStyles(Toolbar)>
+  <WithStyles(Toolbar)
+    variant="dense"
+  >
     <WithStyles(Grid)
       container={true}
     >
