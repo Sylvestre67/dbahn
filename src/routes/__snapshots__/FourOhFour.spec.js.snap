@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FourOhFour should render correctly 1`] = `
+<div>
+  <WithStyles(Typography)
+    color="error"
+    variant="h6"
+  >
+    Not Found
+  </WithStyles(Typography)>
+  <WithStyles(Typography)>
+    The Page you requested cannot be found.
+  </WithStyles(Typography)>
+</div>
+`;
