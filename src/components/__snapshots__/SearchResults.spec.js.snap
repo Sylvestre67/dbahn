@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResults should render correctly 1`] = `
+<div>
+  <WithStyles(Typography)>
+    Stations: 
+  </WithStyles(Typography)>
+  <WithStyles(Typography)>
+    Stations: 
+  </WithStyles(Typography)>
+  <WithStyles(Typography)>
+    Stations: 
+  </WithStyles(Typography)>
+</div>
+`;
