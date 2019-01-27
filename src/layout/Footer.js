@@ -10,7 +10,7 @@ const isEven = process.env.REACT_APP_WEBSITE_NAME === 'Even Financial';
 
 const styles = theme => ({
 	footer: {
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: theme.palette.secondary.main,
 		color: 'white',
 		'& > div': {
 			justifyContent: 'center',
