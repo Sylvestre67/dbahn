@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t dbhan -t latest .
+HEAD=$(git log --pretty=format:'%h' -n 1)
+
+docker build -t dbhan:${HEAD} .
