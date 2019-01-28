@@ -1,6 +1,6 @@
 import { ApolloLink, concat } from 'apollo-link';
 import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
 const httpLink = new HttpLink({
@@ -19,7 +19,16 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
 const apolloClient = new ApolloClient({
 	link: concat(authMiddleware, httpLink),
-	cache: new InMemoryCache(),
+	cache: new InMemoryCache({
+		dataIdFromObject: object => {
+			switch (object.__typename) {
+				case 'Station':
+					return `${object.__typename}_${object.primaryEvaId}`;
+				default:
+					return defaultDataIdFromObject(object); // fall back to default handling
+			}
+		},
+	}),
 });
 
 export default apolloClient;
