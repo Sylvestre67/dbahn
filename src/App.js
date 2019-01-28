@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ApolloProvider } from 'react-apollo';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 
 import theme from './theme/theme';
+import apolloClient from './services/apollo';
 
 import Header from './layout/Header';
 import Footer from './layout/Footer';
@@ -32,41 +34,45 @@ class App extends Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<MuiThemeProvider theme={theme}>
-				<CssBaseline />
-				<Header />
-
-				<main role="main" className={classes.main}>
-					<Grid className={classes.container} container spacing={8}>
+			<ApolloProvider client={apolloClient}>
+				<MuiThemeProvider theme={theme}>
+					<CssBaseline />
+					<Header />
+					<main role="main" className={classes.main}>
 						<Grid
-							item
-							xs={12}
-							style={{
-								display: 'flex',
-								flexDirection: 'column',
-							}}>
-							<Router>
-								<Stations>
-									<Switch>
-										<Route
-											exact
-											path="/"
-											component={Search}
-										/>
-										<Route
-											exact
-											path="/:station_id/"
-											component={Station}
-										/>
-										<Route component={FourOhFour} />
-									</Switch>
-								</Stations>
-							</Router>
+							className={classes.container}
+							container
+							spacing={8}>
+							<Grid
+								item
+								xs={12}
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+								}}>
+								<Router>
+									<Stations>
+										<Switch>
+											<Route
+												exact
+												path="/"
+												component={Search}
+											/>
+											<Route
+												exact
+												path="/:evaId/"
+												component={Station}
+											/>
+											<Route component={FourOhFour} />
+										</Switch>
+									</Stations>
+								</Router>
+							</Grid>
 						</Grid>
-					</Grid>
-				</main>
-				<Footer />
-			</MuiThemeProvider>
+					</main>
+					<Footer />
+				</MuiThemeProvider>
+			</ApolloProvider>
 		);
 	}
 }

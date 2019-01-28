@@ -1,12 +1,14 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core';
 
+import Avatar from '@material-ui/core/Avatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 import { AutoSizer, List } from 'react-virtualized';
@@ -18,11 +20,19 @@ const listRowHeight = 61;
 const styles = theme => ({
 	listContainer: {
 		height: '100%',
+		textAlign: 'center',
 	},
 	list: {
 		'&:focus': {
 			outline: 0, // I know you should not do it.
 		},
+	},
+	link: {
+		textDecoration: 'none',
+		color: '#25a9e0',
+	},
+	progress: {
+		margin: theme.spacing.unit * 2,
 	},
 });
 
@@ -34,7 +44,7 @@ class SearchResults extends React.Component {
 
 	render() {
 		const { classes, theme } = this.props;
-		const { data } = this.context;
+		const { data, loading } = this.context;
 
 		return (
 			<div className={classes.listContainer}>
@@ -49,21 +59,25 @@ class SearchResults extends React.Component {
 					Errors: {JSON.stringify(error || null, 4, 4)}
 				</Typography>*/}
 
-				<AutoSizer>
-					{({ width, height }) => (
-						<List
-							className={classes.list}
-							ref="List"
-							width={width}
-							height={height - theme.spacing.unit * 3}
-							rowHeight={listRowHeight}
-							overscanRowCount={5}
-							rowCount={data.length}
-							noRowsRenderer={this._noRowsRenderer}
-							rowRenderer={this._rowRenderer}
-						/>
-					)}
-				</AutoSizer>
+				{loading ? (
+					<CircularProgress className={classes.progress} />
+				) : (
+					<AutoSizer>
+						{({ width, height }) => (
+							<List
+								className={classes.list}
+								ref="List"
+								width={width}
+								height={height - theme.spacing.unit * 3}
+								rowHeight={listRowHeight}
+								overscanRowCount={5}
+								rowCount={data.length}
+								noRowsRenderer={this._noRowsRenderer}
+								rowRenderer={this._rowRenderer}
+							/>
+						)}
+					</AutoSizer>
+				)}
 			</div>
 		);
 	}
@@ -73,6 +87,7 @@ class SearchResults extends React.Component {
 	}
 
 	_rowRenderer({ index, isScrolling, key, style }) {
+		const { classes } = this.props;
 		const { data } = this.context;
 		let station = data[index];
 
@@ -90,7 +105,6 @@ class SearchResults extends React.Component {
 					<Avatar alt={station.name} src={station.picture.url} />
 				</ListItemAvatar>
 				<ListItemText
-					primary={station.name}
 					secondary={
 						<React.Fragment>
 							<Typography
@@ -100,8 +114,13 @@ class SearchResults extends React.Component {
 								{station.primaryEvaId}
 							</Typography>
 						</React.Fragment>
-					}
-				/>
+					}>
+					<NavLink
+						to={`/${station.primaryEvaId}/`}
+						className={classes.link}>
+						{station.name}
+					</NavLink>
+				</ListItemText>
 			</ListItem>
 		);
 	}

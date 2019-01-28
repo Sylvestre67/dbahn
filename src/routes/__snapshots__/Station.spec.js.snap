@@ -1,3 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Station should render correctly 1`] = `<div />`;
+exports[`Station should render correctly 1`] = `
+<Fragment>
+  <WithStyles(withApollo(withRouter(StationHeader))) />
+  <WithStyles(withRouter(withApollo(StationTimetable))) />
+</Fragment>
+`;

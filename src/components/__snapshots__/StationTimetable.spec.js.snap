@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StationTimetable should render correctly 1`] = `
+<withRouter(withApollo(StationTimetable))
+  classes={
+    Object {
+      "root": "withRouter-withApollo-StationTimetable---root-1 testing",
+    }
+  }
+/>
+`;

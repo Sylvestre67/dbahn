@@ -1,25 +1,11 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import { withRouter } from 'react-router-dom';
-
-import apolloClient from '../services/apollo';
-
 import { Query } from 'react-apollo';
 
-const GET_STATIONS = gql`
-	query stations($search: String!) {
-		search(searchTerm: $search) {
-			stations {
-				primaryEvaId
-				name
-				picture {
-					url
-				}
-			}
-		}
-	}
-`;
+import { SEARCH_STATIONS } from './queries';
+
+import apolloClient from '../services/apollo';
 
 export const StationsContext = React.createContext({});
 
@@ -56,7 +42,7 @@ class Stations extends React.PureComponent {
 
 		return (
 			<Query
-				query={GET_STATIONS}
+				query={SEARCH_STATIONS}
 				variables={{ search }}
 				client={apolloClient}>
 				{({ data = { search: { stations: [] } }, loading, error }) => (

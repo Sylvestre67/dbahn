@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StationHeader should render correctly 1`] = `
+<withApollo(withRouter(StationHeader))
+  classes={
+    Object {
+      "root": "withApollo-withRouter-StationHeader---root-1 testing",
+    }
+  }
+/>
+`;

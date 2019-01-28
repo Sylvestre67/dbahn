@@ -4,8 +4,10 @@ exports[`SearchResults should render correctly 1`] = `
 <SearchResults
   classes={
     Object {
+      "link": "SearchResults-link-3",
       "list": "SearchResults-list-2",
       "listContainer": "SearchResults-listContainer-1",
+      "progress": "SearchResults-progress-4",
       "root": "undefined testing",
     }
   }
