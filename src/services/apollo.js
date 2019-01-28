@@ -19,6 +19,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
 const apolloClient = new ApolloClient({
 	link: concat(authMiddleware, httpLink),
+	connectToDevTools: true,
 	cache: new InMemoryCache({
 		dataIdFromObject: object => {
 			switch (object.__typename) {

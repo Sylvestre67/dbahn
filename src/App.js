@@ -7,8 +7,6 @@ import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 
 import theme from './theme/theme';
 
-import apolloClient from './services/apollo';
-
 import Header from './layout/Header';
 import Footer from './layout/Footer';
 

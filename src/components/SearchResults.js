@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core';
 
@@ -34,7 +34,7 @@ class SearchResults extends React.Component {
 
 	render() {
 		const { classes, theme } = this.props;
-		const { data, loading, error } = this.context;
+		const { data } = this.context;
 
 		return (
 			<div className={classes.listContainer}>
@@ -73,7 +73,6 @@ class SearchResults extends React.Component {
 	}
 
 	_rowRenderer({ index, isScrolling, key, style }) {
-		const { classes } = this.props;
 		const { data } = this.context;
 		let station = data[index];
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { withRouter } from 'react-router-dom';
 
@@ -52,7 +52,7 @@ class Stations extends React.PureComponent {
 	}
 
 	render() {
-		const { data, search } = this.state;
+		const { search } = this.state;
 
 		return (
 			<Query

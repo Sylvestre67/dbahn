@@ -42,7 +42,6 @@ export class Search extends React.Component {
 	}
 
 	handleSearch(e) {
-		const { history, location } = this.props;
 		this.setState({ search: e.target.value }, () => {
 			this.updateLocationQuery();
 		});

@@ -6,8 +6,6 @@ import { withStyles } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-const isEven = process.env.REACT_APP_WEBSITE_NAME === 'Even Financial';
-
 const styles = theme => ({
 	footer: {
 		backgroundColor: theme.palette.secondary.main,
