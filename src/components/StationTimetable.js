@@ -11,9 +11,21 @@ import Typography from '@material-ui/core/Typography';
 import StationFragments from '../context/fragments';
 import { GET_STATION } from '../context/queries';
 
+import TimeTableViz from './TimeTableViz';
+
 const styles = theme => ({
-	root: {},
+	root: { flex: 1, backgroundColor: '#eee' },
 });
+
+const RenderTimeTable = props => {
+	const { classes, ...timetable_and_tracks } = props;
+
+	return (
+		<div className={classes.root}>
+			<TimeTableViz {...timetable_and_tracks} />
+		</div>
+	);
+};
 
 const StationTimetable = props => {
 	const { classes, client, match } = props;
@@ -33,30 +45,24 @@ const StationTimetable = props => {
 			query={GET_STATION}
 			variables={{ evaId: match.params.evaId }}
 			client={client}>
-			{({ data, loading, error }) => (
-				<React.Fragment>
-					{loading ? (
-						<LinearProgress color="secondary" />
-					) : (
-						<div className={classes.root}>
-							<Typography variant="h5">Timetable</Typography>
-							<Typography>
-								{JSON.stringify(
-									data.stationWithEvaId.timetable,
-									4,
-									4
-								)}
-							</Typography>
-						</div>
-					)}
-				</React.Fragment>
-			)}
+			{({ data, loading, error }) => {
+				return (
+					<React.Fragment>
+						{loading ? (
+							<LinearProgress color="secondary" />
+						) : (
+							<RenderTimeTable
+								timetable={data.stationWithEvaId.timetable}
+								tracks={data.stationWithEvaId.tracks}
+								classes={classes}
+							/>
+						)}
+					</React.Fragment>
+				);
+			}}
 		</Query>
 	) : (
-		<div className={classes.root}>
-			<Typography variant="h5">Timetable</Typography>
-			<Typography>{JSON.stringify(timetable, 4, 4)}</Typography>
-		</div>
+		<RenderTimeTable timetable={timetable} classes={classes} />
 	);
 };
 
