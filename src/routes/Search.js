@@ -91,8 +91,8 @@ export class Search extends React.Component {
 					</Grid>
 				</Grid>
 
-				<Grid container>
-					<Grid item xs={12}>
+				<Grid container style={{ flex: '1 0 auto' }} justify="center">
+					<Grid item xs={12} sm={12} lg={6}>
 						<SearchResults />
 					</Grid>
 				</Grid>

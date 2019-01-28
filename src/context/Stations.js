@@ -13,6 +13,9 @@ const GET_STATIONS = gql`
 			stations {
 				primaryEvaId
 				name
+				picture {
+					url
+				}
 			}
 		}
 	}
@@ -57,7 +60,12 @@ class Stations extends React.PureComponent {
 				variables={{ search }}
 				client={apolloClient}>
 				{({ data, loading, error }) => (
-					<StationsContext.Provider value={{ data, loading, error }}>
+					<StationsContext.Provider
+						value={{
+							data: data.search ? data.search.stations : [],
+							loading,
+							error,
+						}}>
 						{this.props.children}
 					</StationsContext.Provider>
 				)}

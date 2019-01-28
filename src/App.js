@@ -40,7 +40,13 @@ class App extends Component {
 
 				<main role="main" className={classes.main}>
 					<Grid className={classes.container} container spacing={8}>
-						<Grid item xs={12}>
+						<Grid
+							item
+							xs={12}
+							style={{
+								display: 'flex',
+								flexDirection: 'column',
+							}}>
 							<Router>
 								<Stations>
 									<Switch>
