@@ -10,8 +10,36 @@ import StationFragments from '../context/fragments';
 import { GET_STATION } from '../context/queries';
 
 const styles = theme => ({
-	root: {},
+	root: {
+		// height: '100%',
+		// backgroundColor: '#eee',
+		// backgroundSize: 'cover',
+		// backgroundPosition: 'center',
+		// backgroundRepeat: 'no-repeat',
+	},
 });
+
+const RenderStationHeader = props => {
+	const { classes, station, loading } = props;
+
+	return (
+		<React.Fragment>
+			{!loading && (
+				<div
+					className={classes.root}
+					style={
+						{
+							// backgroundImage: station.picture
+							// 	? `url(${station.picture.url})`
+							// 	: '',
+						}
+					}>
+					<Typography variant="h5">{station.name}</Typography>
+				</div>
+			)}
+		</React.Fragment>
+	);
+};
 
 const StationHeader = props => {
 	const { classes, client, match } = props;
@@ -32,27 +60,15 @@ const StationHeader = props => {
 			variables={{ evaId: match.params.evaId }}
 			client={client}>
 			{({ data, loading, error }) => (
-				<React.Fragment>
-					{loading ? (
-						<div />
-					) : (
-						<div className={classes.root}>
-							<Typography variant="h5">
-								{data.stationWithEvaId.name}
-							</Typography>
-							<Typography>
-								{JSON.stringify(data.stationWithEvaId, 4, 4)}
-							</Typography>
-						</div>
-					)}
-				</React.Fragment>
+				<RenderStationHeader
+					loading={loading}
+					classes={classes}
+					station={data.stationWithEvaId}
+				/>
 			)}
 		</Query>
 	) : (
-		<div className={classes.root}>
-			<Typography variant="h5">{station.name}</Typography>
-			<Typography>{JSON.stringify(station, 4, 4)}</Typography>
-		</div>
+		<RenderStationHeader classes={classes} station={station} />
 	);
 };
 
