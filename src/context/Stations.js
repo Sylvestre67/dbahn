@@ -59,7 +59,7 @@ class Stations extends React.PureComponent {
 				query={GET_STATIONS}
 				variables={{ search }}
 				client={apolloClient}>
-				{({ data, loading, error }) => (
+				{({ data = { search: { stations: [] } }, loading, error }) => (
 					<StationsContext.Provider
 						value={{
 							data: data.search ? data.search.stations : [],
