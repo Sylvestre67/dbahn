@@ -13,6 +13,13 @@ StationFragments.fragments = {
 	`,
 	timetable: gql`
 		fragment Timetable on Station {
+			tracks {
+				platform
+				number
+				name
+				length
+				height
+			}
 			timetable {
 				nextArrivals {
 					type
