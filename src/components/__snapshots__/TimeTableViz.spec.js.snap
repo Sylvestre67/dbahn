@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeTableViz should render correctly 1`] = `
+<TimeTableViz
+  classes={
+    Object {
+      "element": "TimeTableViz-element-1",
+      "root": "undefined testing",
+    }
+  }
+/>
+`;
