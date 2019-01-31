@@ -15,9 +15,9 @@ const styles = ({ palette }: Theme) =>
 		},
 	});
 
-interface FooterProps extends WithStyles<typeof styles> {}
+interface IFooterProps extends WithStyles<typeof styles> {}
 
-export function Footer(props: FooterProps) {
+export function Footer(props: IFooterProps) {
 	const { classes } = props;
 
 	return (
