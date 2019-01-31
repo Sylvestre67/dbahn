@@ -17,7 +17,7 @@ const styles = ({ palette }: Theme) =>
 
 interface IFooterProps extends WithStyles<typeof styles> {}
 
-export function Footer(props: IFooterProps) {
+export const Footer: React.SFC<IFooterProps> = props => {
 	const { classes } = props;
 
 	return (
@@ -29,6 +29,6 @@ export function Footer(props: IFooterProps) {
 			</Toolbar>
 		</footer>
 	);
-}
+};
 
 export default withStyles(styles)(Footer);

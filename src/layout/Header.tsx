@@ -23,7 +23,7 @@ const styles = () =>
 
 interface IHeaderProps extends WithStyles<typeof styles> {}
 
-export function Header(props: IHeaderProps) {
+export const Header: React.SFC<IHeaderProps> = props => {
 	const { classes } = props;
 
 	return (
@@ -42,6 +42,6 @@ export function Header(props: IHeaderProps) {
 			</Toolbar>
 		</AppBar>
 	);
-}
+};
 
 export default withStyles(styles)(Header);
