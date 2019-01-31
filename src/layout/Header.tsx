@@ -1,28 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import { withStyles } from '@material-ui/core';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core';
 
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
-	grow: {
-		flexGrow: 1,
-	},
-	img: {
-		width: '50px',
-		height: 'auto',
-	},
-	bar: {
-		display: 'flex',
-		justifyContent: 'center',
-	},
-});
+const styles = () =>
+	createStyles({
+		grow: {
+			flexGrow: 1,
+		},
+		img: {
+			width: '50px',
+			height: 'auto',
+		},
+		bar: {
+			display: 'flex',
+			justifyContent: 'center',
+		},
+	});
 
-export function Header(props) {
+interface IHeaderProps extends WithStyles<typeof styles> {}
+
+export function Header(props: IHeaderProps) {
 	const { classes } = props;
 
 	return (
@@ -42,9 +43,5 @@ export function Header(props) {
 		</AppBar>
 	);
 }
-
-Header.propTypes = {
-	classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Header);
