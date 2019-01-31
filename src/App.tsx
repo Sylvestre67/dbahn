@@ -29,7 +29,7 @@ const styles = ({ spacing }: Theme) =>
 			flex: '1 0 auto',
 			display: 'flex',
 			justifyContent: 'center',
-			padding: `0 ${theme.spacing.unit * 3}px`,
+			padding: `0 ${spacing.unit * 3}px`,
 		},
 		container: {
 			maxWidth: '1400px',
