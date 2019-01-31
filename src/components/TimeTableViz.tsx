@@ -1,26 +1,46 @@
 import React from 'react';
 import * as d3 from 'd3';
+import { ApolloError } from 'apollo-client';
 
 import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
-import { Timetable } from '../context/__generated__/Timetable';
+import {
+	Station,
+	Station_stationWithEvaId_timetable,
+	Station_stationWithEvaId_tracks,
+} from '../context/__generated__/Station';
 
 const styles = () =>
 	createStyles({
 		element: { height: '100%' },
 	});
 
-interface ITimeTableVizProps extends Timetable {}
 interface ITimeTableVizProps extends WithStyles<typeof styles> {}
+interface ITimeTableVizProps {
+	data: Station | null | undefined;
+	loading: boolean;
+	error: ApolloError | undefined;
+}
 
 class TimeTableViz extends React.PureComponent<ITimeTableVizProps, {}> {
 	private element = React.createRef<HTMLDivElement>();
 
-	componentDidMount() {
-		this.drawTracks();
+	componentDidUpdate() {
+		const { data } = this.props;
+
+		if (data && data.stationWithEvaId) {
+			const {
+				stationWithEvaId: { timetable, tracks },
+			} = data;
+			this.drawTracks(tracks, timetable);
+		}
 	}
 
-	drawTracks() {
-		const { timetable, tracks } = this.props;
+	drawTracks(
+		tracks: Station_stationWithEvaId_tracks[],
+		timetable: Station_stationWithEvaId_timetable
+	) {
+		console.log(timetable, tracks);
+
 		let width: number, height: number;
 
 		const node = this.element.current;
@@ -42,8 +62,6 @@ class TimeTableViz extends React.PureComponent<ITimeTableVizProps, {}> {
 				.attr('fill', 'blue');
 		}
 	}
-
-	updateTracks() {}
 
 	render() {
 		const { classes } = this.props;
