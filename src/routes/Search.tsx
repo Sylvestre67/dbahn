@@ -20,17 +20,15 @@ const styles = () =>
 		},
 	});
 
-interface SearchStyle extends WithStyles<typeof styles> {}
+interface ISearchProps extends WithStyles<typeof styles> {}
+interface ISearchProps extends RouteComponentProps {}
 
 interface SearchState {
 	search: string;
 }
 
-export class Search extends React.Component<
-	SearchStyle & RouteComponentProps,
-	SearchState
-> {
-	constructor(props: SearchStyle & RouteComponentProps) {
+export class Search extends React.Component<ISearchProps, SearchState> {
+	constructor(props: ISearchProps & RouteComponentProps) {
 		super(props);
 
 		this.handleSearch = this.handleSearch.bind(this);
