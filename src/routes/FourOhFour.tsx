@@ -12,9 +12,9 @@ const styles = ({ spacing }: Theme) =>
 		},
 	});
 
-interface FourOhFourProps extends WithStyles<typeof styles> {}
+interface IFourOhFourProps extends WithStyles<typeof styles> {}
 
-export const FourOhFour: React.SFC<FourOhFourProps> = props => {
+export const FourOhFour: React.SFC<IFourOhFourProps> = props => {
 	const { classes } = props;
 
 	return (
