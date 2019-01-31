@@ -4,7 +4,13 @@ import { ApolloProvider } from 'react-apollo';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import {
+	withStyles,
+	createStyles,
+	MuiThemeProvider,
+	WithStyles,
+	Theme,
+} from '@material-ui/core/styles';
 
 import theme from './theme/theme';
 import apolloClient from './services/apollo';
@@ -15,22 +21,24 @@ import Footer from './layout/Footer';
 import FourOhFour from './routes/FourOhFour';
 import Search from './routes/Search';
 import Station from './routes/Station';
-
 import Stations from './context/Stations';
 
-const styles = theme => ({
-	main: {
-		flex: '1 0 auto',
-		display: 'flex',
-		justifyContent: 'center',
-		padding: `0 ${theme.spacing.unit * 3}px`,
-	},
-	container: {
-		maxWidth: '1400px',
-	},
-});
+const styles = ({ spacing }: Theme) =>
+	createStyles({
+		main: {
+			flex: '1 0 auto',
+			display: 'flex',
+			justifyContent: 'center',
+			padding: `0 ${theme.spacing.unit * 3}px`,
+		},
+		container: {
+			maxWidth: '1400px',
+		},
+	});
 
-class App extends Component {
+interface IAppProps extends WithStyles<typeof styles> {}
+
+class App extends Component<IAppProps, {}> {
 	render() {
 		const { classes } = this.props;
 		return (
