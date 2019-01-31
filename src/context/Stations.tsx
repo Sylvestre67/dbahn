@@ -1,20 +1,27 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import { Query } from 'react-apollo';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+
+import apolloClient from '../services/apollo';
+import { StationDefs } from './__generated__/StationDefs';
+
+import StationsQuery from './StationsQuery';
 
 import { SEARCH_STATIONS } from './queries';
 
-import apolloClient from '../services/apollo';
-
 export const StationsContext = React.createContext({});
 
-class Stations extends React.PureComponent {
-	constructor(props) {
+interface IStationsProps extends RouteComponentProps {}
+
+interface IStationsState {
+	data?: StationDefs;
+	search: string;
+}
+
+class Stations extends React.PureComponent<IStationsProps, IStationsState> {
+	constructor(props: IStationsProps) {
 		super(props);
 
 		this.state = {
-			data: [],
 			search: '',
 		};
 	}
@@ -28,7 +35,7 @@ class Stations extends React.PureComponent {
 		}
 	}
 
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate(prevProps: IStationsProps) {
 		const { location } = this.props;
 		const { pathname, key, search } = location;
 
@@ -41,21 +48,21 @@ class Stations extends React.PureComponent {
 		const { search } = this.state;
 
 		return (
-			<Query
+			<StationsQuery
 				query={SEARCH_STATIONS}
 				variables={{ search }}
 				client={apolloClient}>
-				{({ data = { search: { stations: [] } }, loading, error }) => (
+				{({ data, loading, error }) => (
 					<StationsContext.Provider
 						value={{
-							data: data.search ? data.search.stations : [],
+							data,
 							loading,
 							error,
 						}}>
 						{this.props.children}
 					</StationsContext.Provider>
 				)}
-			</Query>
+			</StationsQuery>
 		);
 	}
 }
