@@ -8,7 +8,7 @@ import apolloClient from '../services/apollo';
 export const Station: React.SFC<{}> = () => {
 	return (
 		<React.Fragment>
-			<StationHeader />
+			<StationHeader client={apolloClient} />
 			<StationTimetable client={apolloClient} />
 		</React.Fragment>
 	);
