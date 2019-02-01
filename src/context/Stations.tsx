@@ -56,23 +56,27 @@ class Stations extends React.PureComponent<IStationsProps, IStationsState> {
 	render() {
 		const { search } = this.state;
 
-		return (
-			<StationsQuery
-				query={SEARCH_STATIONS}
-				variables={{ search }}
-				client={apolloClient}>
-				{({ data, loading, error }) => (
-					<StationsContext.Provider
-						value={{
-							data,
-							loading,
-							error,
-						}}>
-						{this.props.children}
-					</StationsContext.Provider>
-				)}
-			</StationsQuery>
-		);
+		if (search.length) {
+			return (
+				<StationsQuery
+					query={SEARCH_STATIONS}
+					variables={{ search }}
+					client={apolloClient}>
+					{({ data, loading, error }) => (
+						<StationsContext.Provider
+							value={{
+								data,
+								loading,
+								error,
+							}}>
+							{this.props.children}
+						</StationsContext.Provider>
+					)}
+				</StationsQuery>
+			);
+		}
+
+		return <React.Fragment>{this.props.children}</React.Fragment>;
 	}
 }
 

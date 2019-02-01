@@ -48,7 +48,10 @@ const StationTimetable: React.SFC<IStationTimetableProps> = props => {
 		</StationQuery>
 	) : (
 		<TimeTableViz
-			data={client.readQuery({ query: GET_STATION })}
+			data={client.readQuery({
+				query: GET_STATION,
+				variables: { evaId: parseInt(match.params.evaId, 10) },
+			})}
 			loading={false}
 			error={undefined}
 		/>
