@@ -7,15 +7,24 @@ import { StationDefs } from './__generated__/StationDefs';
 import StationsQuery from './StationsQuery';
 
 import { SEARCH_STATIONS } from './queries';
+import { ApolloError } from 'apollo-client';
 
-export const StationsContext = React.createContext({});
+export interface IStationsProps extends RouteComponentProps {}
 
-interface IStationsProps extends RouteComponentProps {}
-
-interface IStationsState {
+export interface IStationsState {
 	data?: StationDefs;
 	search: string;
 }
+
+export interface IStationsContext {
+	data: StationDefs | undefined;
+	loading: boolean;
+	error: ApolloError | undefined;
+}
+
+export const StationsContext = React.createContext<IStationsContext | null>(
+	null
+);
 
 class Stations extends React.PureComponent<IStationsProps, IStationsState> {
 	constructor(props: IStationsProps) {
