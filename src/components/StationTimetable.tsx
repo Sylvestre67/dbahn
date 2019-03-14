@@ -27,7 +27,6 @@ const StationTimetable: React.SFC<IStationTimetableProps> = props => {
 	const { client, match } = props;
 
 	// Querying the cache, if timetable fragment found, use it, do not query.
-	// Hello World !
 	let timetable: Timetable | null;
 	try {
 		timetable = client.readFragment({
